@@ -1,5 +1,6 @@
 {
   "name": "Vercel Ready React Starter",
   "description": "A foundational React and TypeScript application, styled with Tailwind CSS, and pre-configured with the necessary files for seamless deployment on Vercel.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "prompt": ""
 }

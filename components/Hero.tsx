@@ -1,191 +1,285 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-type ResourceLink = {
-  title: string;
-  url: string;
-};
-
-const LightbulbIcon: React.FC = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-    </svg>
+// A reusable card component for the mood board
+const InfoCard = ({ title, children, color, rotation }: { title: string, children: React.ReactNode, color: string, rotation: string }) => (
+    <div className={`p-6 rounded-lg shadow-lg transform ${color} ${rotation} transition-transform hover:scale-105 hover:rotate-0 flex flex-col`}>
+        <h3 className="text-xl font-bold text-gray-800 border-b-2 border-gray-400/50 pb-2 mb-4">{title}</h3>
+        <div className="space-y-3 text-gray-700 flex-grow">
+            {children}
+        </div>
+    </div>
 );
 
-const LinkIcon: React.FC = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.536a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-    </svg>
-);
+// --- Data for Info Cards ---
+const marketLandscapeData = [
+    {
+        title: "Market Size Projections",
+        color: "bg-yellow-100",
+        rotation: "-rotate-2",
+        content: [
+            "The Conversational AI Market is projected to grow from <strong>$13.2 billion</strong> in 2024 to <strong>$49.9 billion</strong> by 2030.",
+            "Global market size was estimated at <strong>$11.2 billion</strong> by the end of 2024, with a projected CAGR of <strong>23%</strong> from 2025 to 2030."
+        ]
+    },
+    {
+        title: "Business & Industry Projections",
+        color: "bg-green-100",
+        rotation: "rotate-1",
+        content: [
+            "<strong>Leading Segment:</strong> Solutions Segment (61% of global revenue).",
+            "<strong>Rapid Growth Segment:</strong> Managed Services.",
+            "<strong>Highest CAGR Industry:</strong> Healthcare & Life Sciences.",
+            "<strong>Highest CAGR Professional Vertical:</strong> Support & Maintenance.",
+            "<strong>Fast Growing Verticals:</strong> BFSI, IT & Telecom, Retail & E-commerce, Media & Entertainment.",
+        ]
+    },
+    {
+        title: "Country & Region Projections",
+        color: "bg-blue-100",
+        rotation: "rotate-2",
+        content: [
+            "<strong>Highest Growth Region:</strong> North America (highest CARG).",
+            "<strong>Highest Growth Country:</strong> Saudi Arabia (projected to reach $1.3 billion by 2030).",
+            "<strong>US Market Focus:</strong> Health, Retail, and Finance.",
+            "<strong>EU Market Focus:</strong> Retail, Banking, and Automotive.",
+            "<strong>Asia Pacific Focus:</strong> E-commerce.",
+        ]
+    },
+    {
+        title: "Pioneers",
+        color: "bg-rose-100",
+        rotation: "-rotate-1",
+        content: [
+            "<strong>Tech Giants leading implementation:</strong> Amazon, Google, Walmart, Microsoft.",
+            "<strong>Example:</strong> Walmart's GenAI search uses natural language to generate comprehensive product lists, simplifying the customer's decision-making process."
+        ]
+    }
+];
+const keyPlayersData = [
+    {
+        title: "Powerful Leaders",
+        color: "bg-orange-100",
+        rotation: "rotate-1",
+        content: [
+            "<strong>Players:</strong> Google Dialogflow, Amazon Lex, Microsoft Bot Framework.",
+            "<strong>Model:</strong> Pay-as-you-go | Direct & third-party deployment | 24/7 global support."
+        ]
+    },
+    {
+        title: "No-Code/Low-Code Players",
+        color: "bg-purple-100",
+        rotation: "-rotate-2",
+        content: [
+            "<strong>Players:</strong> Kore.ai, Cognigy, Yellow.ai.",
+            "<strong>Strengths:</strong> Strong omnichannel automation, multilingual capabilities.",
+            "<strong>Model:</strong> Subscription-based | Direct & third-party deployments | 24/7 global support."
+        ]
+    },
+    {
+        title: "Service Automation & AI Solutions",
+        color: "bg-teal-100",
+        rotation: "rotate-2",
+        content: [
+            "<strong>Players:</strong> Aisera, Liveperson, Uniphore.",
+            "<strong>Strengths:</strong> Speech analytics, enterprise automation, multichannel engagement.",
+            "<strong>Target:</strong> Large enterprises & Fortune 500 companies seeking AI-driven solutions."
+        ]
+    },
+    {
+        title: "CX-Focused Players",
+        color: "bg-pink-100",
+        rotation: "-rotate-1",
+        content: [
+            "<strong>Players:</strong> Sprinklr, Onereach.ai, Verint.",
+            "<strong>Niche Focus:</strong> Omilia, Netomi (Banking & healthcare focused).",
+            "<strong>Model:</strong> ARR-based pricing | Direct & third-party vendors | 24/7 global support."
+        ]
+    }
+];
+const marketApproachesData = [
+    {
+        title: "System Integrators",
+        color: "bg-lime-100",
+        rotation: "rotate-2",
+        content: [
+            "<strong>Key Players:</strong> Verint, Cognigy, Kore.ai, Sprinklr, and Onereach.ai.",
+            "<strong>Strategy:</strong> Work closely with global SIs like Accenture, Capgemini, and Deloitte to deliver end-to-end AI implementations."
+        ]
+    },
+    {
+        title: "Direct Sales",
+        color: "bg-sky-100",
+        rotation: "-rotate-1",
+        content: [
+            "<strong>Key Players:</strong> Google, Microsoft, Amazon, Uniphore, Amilea, Live persons.",
+            "<strong>Strategy:</strong> Prioritize direct sales, targeting large enterprises.",
+            "<strong>Method:</strong> Build industry-specific models to target clients based on their strengths."
+        ]
+    },
+    {
+        title: "BPO & Outsourcing",
+        color: "bg-amber-100",
+        rotation: "rotate-1",
+        content: [
+            "<strong>BPO Partnerships:</strong> Aisera, Omilia, Netomi partner with providers like Teleperformance, Concentrix, and Alorica.",
+            "<strong>Telecom Partnerships:</strong> Omilia and Aisera partner with providers like AT&T, Vodafone, and BT to embed AI into customer support."
+        ]
+    },
+    {
+        title: "Value-Added Resellers (VARs)",
+        color: "bg-fuchsia-100",
+        rotation: "-rotate-2",
+        content: [
+            "<strong>Platform Players:</strong> Kore.ai, Cognigy, and Ada use partner programs for regional resellers to package AI with CRM and other platforms.",
+            "<strong>CX Specialists:</strong> Sprinklr and Verint work with CX VARs who bundle conversational AI with analytics and experience platforms."
+        ]
+    },
+    {
+        title: "Cloud & SaaS Distribution",
+        color: "bg-cyan-100",
+        rotation: "rotate-2",
+        content: [
+            "<strong>Key Players:</strong> Kore.ai, Netomi.",
+            "<strong>Model:</strong> Extend SaaS-based models where businesses can subscribe to solutions without complex IT deployment.",
+            "<strong>Target Audience:</strong> SMEs and large enterprises looking for rapid AI adoption."
+        ]
+    }
+];
+const resources = [
+    { title: "Grand View Research: Conversational AI Market Size Outlook", url: "https://www.grandviewresearch.com/horizon/outlook/conversational-ai-market-size/global" },
+    { title: "Gartner: How to Prepare for the Impact of Generative AI", url: "https://www.gartner.com/doc/reprints?id=1-2K1VNJ3Y&ct=250124&st=sb" },
+    { title: "Grand View Research: Conversational AI Market Report", url: "https://www.grandviewresearch.com/industry-analysis/conversational-ai-market-report" },
+    { title: "MarketsandMarkets: Conversational AI Market Report", url: "https://www.marketsandmarkets.com/Market-Reports/conversational-ai-market-49043506.html" },
+    { title: "Medium: The Conversational AI Technology Landscape", url: "https://cobusgreyling.medium.com/the-conversational-ai-technology-landscape-version-5-0-840290d97c7f" },
+    { title: "Infobip: The Road to Conversational AI Market Success", url: "https://www.infobip.com/blog/conversational-ai-market" },
+    { title: "LinkedIn: Global Landscape of Conversational AI", url: "https://www.linkedin.com/pulse/global-landscape-conversational-ai-its-impact-ccaas-michael-donohue--vf6ce" },
+    { title: "Yellow.ai Docs: Voice Overview", url: "https://docs.yellow.ai/docs/cookbooks/voice-as-channel/voiceoverview" }
+];
 
-const TrashIcon: React.FC = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-    </svg>
-);
 
-const PlusIcon: React.FC = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-    </svg>
-);
+type ResearchTab = 'Market Landscape' | 'Key Players' | 'Market Capturing Approaches' | 'Resources';
+const researchTabs: ResearchTab[] = ['Market Landscape', 'Key Players', 'Market Capturing Approaches', 'Resources'];
 
 export const ResearchSection: React.FC = () => {
-    const [points, setPoints] = useState<string[]>([]);
-    const [newPoint, setNewPoint] = useState('');
-    const [resources, setResources] = useState<ResourceLink[]>([]);
-    const [newResourceTitle, setNewResourceTitle] = useState('');
-    const [newResourceUrl, setNewResourceUrl] = useState('');
-    const [showResources, setShowResources] = useState(false);
+    const [activeTab, setActiveTab] = useState<ResearchTab>('Market Landscape');
+    const [selectedResource, setSelectedResource] = useState<string | null>(null);
 
-    useEffect(() => {
-        try {
-            const storedPoints = localStorage.getItem('researchPoints');
-            if (storedPoints) setPoints(JSON.parse(storedPoints));
-
-            const storedResources = localStorage.getItem('researchResources');
-            if (storedResources) setResources(JSON.parse(storedResources));
-        } catch (error) {
-            console.error("Failed to initialize from localStorage", error);
+    const renderContent = () => {
+        switch (activeTab) {
+            case 'Market Landscape':
+                return (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 p-4">
+                        {marketLandscapeData.map((card, index) => (
+                            <InfoCard key={index} title={card.title} color={card.color} rotation={card.rotation}>
+                                <ul className="list-disc list-inside space-y-2">
+                                    {card.content.map((item, i) => <li key={i} dangerouslySetInnerHTML={{ __html: item }}></li>)}
+                                </ul>
+                            </InfoCard>
+                        ))}
+                    </div>
+                );
+            case 'Key Players':
+                return (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 p-4">
+                        {keyPlayersData.map((card, index) => (
+                            <InfoCard key={index} title={card.title} color={card.color} rotation={card.rotation}>
+                                <ul className="list-disc list-inside space-y-2">
+                                    {card.content.map((item, i) => <li key={i} dangerouslySetInnerHTML={{ __html: item }}></li>)}
+                                </ul>
+                            </InfoCard>
+                        ))}
+                    </div>
+                );
+            case 'Market Capturing Approaches':
+                return (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 p-4">
+                        {marketApproachesData.map((card, index) => (
+                            <InfoCard key={index} title={card.title} color={card.color} rotation={card.rotation}>
+                                <ul className="list-disc list-inside space-y-2">
+                                    {card.content.map((item, i) => <li key={i} dangerouslySetInnerHTML={{ __html: item }}></li>)}
+                                </ul>
+                            </InfoCard>
+                        ))}
+                    </div>
+                );
+            case 'Resources':
+                return (
+                    <div className="space-y-6 p-2">
+                        <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                           <h3 className="text-xl font-semibold text-gray-800 mb-3">Resource Links</h3>
+                           <p className="text-sm text-gray-500 mb-4">Click a link to view its content below. Note: Some sites may prevent embedding due to security policies.</p>
+                           <ul className="space-y-2">
+                               {resources.map((resource) => (
+                                   <li key={resource.url}>
+                                       <a 
+                                         href={resource.url} 
+                                         onClick={(e) => {
+                                             e.preventDefault();
+                                             setSelectedResource(resource.url);
+                                         }}
+                                         className={`block p-2.5 rounded-md text-sm font-medium transition-colors ${selectedResource === resource.url ? 'bg-rose-50 text-rose-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'}`}
+                                        >
+                                           {resource.title}
+                                       </a>
+                                   </li>
+                               ))}
+                           </ul>
+                        </div>
+                        <div className="bg-white rounded-lg border border-gray-200 shadow-sm aspect-video">
+                            {selectedResource ? (
+                                <iframe 
+                                    src={selectedResource}
+                                    title="Resource Viewer" 
+                                    className="w-full h-full rounded-lg"
+                                    sandbox="allow-scripts allow-same-origin"
+                                />
+                            ) : (
+                                <div className="flex items-center justify-center h-full text-gray-500">
+                                    <p>Select a resource from the list above to view it here.</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                );
+            default:
+                return null;
         }
-    }, []);
-
-    const handleAddPoint = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (newPoint.trim()) {
-            const updatedPoints = [...points, newPoint.trim()];
-            setPoints(updatedPoints);
-            localStorage.setItem('researchPoints', JSON.stringify(updatedPoints));
-            setNewPoint('');
-        }
-    };
-    
-    const handleDeletePoint = (indexToDelete: number) => {
-        const updatedPoints = points.filter((_, index) => index !== indexToDelete);
-        setPoints(updatedPoints);
-        localStorage.setItem('researchPoints', JSON.stringify(updatedPoints));
-    };
-
-    const handleAddResource = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (newResourceTitle.trim() && newResourceUrl.trim()) {
-            try {
-                let url = newResourceUrl.trim();
-                if (!/^https?:\/\//i.test(url)) {
-                    url = 'https://' + url;
-                }
-                new URL(url); // This will throw if invalid
-                const updatedResources = [...resources, { title: newResourceTitle.trim(), url }];
-                setResources(updatedResources);
-                localStorage.setItem('researchResources', JSON.stringify(updatedResources));
-                setNewResourceTitle('');
-                setNewResourceUrl('');
-            } catch (error) {
-                alert('Please enter a valid URL.');
-            }
-        }
-    };
-
-    const handleDeleteResource = (indexToDelete: number) => {
-        const updatedResources = resources.filter((_, index) => index !== indexToDelete);
-        setResources(updatedResources);
-        localStorage.setItem('researchResources', JSON.stringify(updatedResources));
     };
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
-            {/* Research Points Section */}
-            <section className="p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
-                <div className="flex items-center gap-3 mb-6">
-                    <LightbulbIcon />
-                    <h2 className="text-2xl font-bold text-gray-800">Research Points</h2>
-                </div>
-                
-                <form onSubmit={handleAddPoint} className="flex flex-col sm:flex-row gap-2 mb-4">
-                    <input
-                        type="text"
-                        value={newPoint}
-                        onChange={(e) => setNewPoint(e.target.value)}
-                        placeholder="Add a new research finding..."
-                        className="flex-grow bg-gray-50 border border-gray-300 rounded-md px-3 py-2 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition"
-                        aria-label="New research point"
-                    />
-                    <button type="submit" className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-rose-500 rounded-md hover:bg-rose-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={!newPoint.trim()}>
-                        <PlusIcon />
-                        Add Point
-                    </button>
-                </form>
-                
-                <ul className="space-y-3">
-                    {points.map((point, index) => (
-                        <li key={index} className="flex items-center justify-between bg-gray-50 p-3 rounded-md animate-slide-in border border-gray-200">
-                           <span className="text-gray-700">{point}</span>
-                           <button onClick={() => handleDeletePoint(index)} className="p-1 text-gray-400 hover:text-red-600 rounded-full transition-colors" aria-label="Delete point">
-                             <TrashIcon />
-                           </button>
-                        </li>
+        <div className="max-w-7xl mx-auto">
+            <div className="border-b border-gray-200 mb-6">
+                <nav className="-mb-px flex space-x-6 overflow-x-auto" aria-label="Tabs">
+                    {researchTabs.map(tab => (
+                        <button
+                            key={tab}
+                            onClick={() => {
+                                setActiveTab(tab);
+                                setSelectedResource(null); // Reset resource view on tab change
+                            }}
+                            className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors
+                                ${activeTab === tab 
+                                    ? 'border-rose-500 text-rose-600' 
+                                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                }
+                            `}
+                        >
+                            {tab}
+                        </button>
                     ))}
-                    {points.length === 0 && <p className="text-center text-gray-500 py-4">No research points yet. Add one to get started!</p>}
-                </ul>
-            </section>
-
-            {/* Resources Section */}
-            <section className="p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
-                <button onClick={() => setShowResources(!showResources)} className="w-full flex items-center justify-between p-2 rounded-md hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500">
-                    <div className="flex items-center gap-3">
-                        <LinkIcon />
-                        <h2 className="text-2xl font-bold text-gray-800">Resources</h2>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 text-gray-500 transition-transform ${showResources ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-                
-                {showResources && (
-                    <div className="mt-6 animate-fade-in">
-                        <form onSubmit={handleAddResource} className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 items-end">
-                            <div className="flex flex-col gap-1">
-                                <label htmlFor="res-title" className="text-sm font-medium text-gray-500">Title</label>
-                                <input id="res-title" type="text" value={newResourceTitle} onChange={(e) => setNewResourceTitle(e.target.value)} placeholder="e.g., Competitor Analysis" className="w-full bg-gray-50 border border-gray-300 rounded-md px-3 py-2 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition" />
-                            </div>
-                            <div className="flex flex-col gap-1">
-                                <label htmlFor="res-url" className="text-sm font-medium text-gray-500">URL</label>
-                                <input id="res-url" type="text" value={newResourceUrl} onChange={(e) => setNewResourceUrl(e.target.value)} placeholder="https://example.com" className="w-full bg-gray-50 border border-gray-300 rounded-md px-3 py-2 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition" />
-                            </div>
-                            <button type="submit" className="sm:col-span-2 flex items-center justify-center gap-2 mt-2 px-4 py-2 text-sm font-semibold text-white bg-rose-500 rounded-md hover:bg-rose-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={!newResourceTitle.trim() || !newResourceUrl.trim()}>
-                                <PlusIcon />
-                                Add Resource
-                            </button>
-                        </form>
-                        
-                        <ul className="space-y-3">
-                            {resources.map((resource, index) => (
-                                <li key={index} className="flex items-center justify-between bg-gray-50 p-3 rounded-md animate-slide-in border border-gray-200">
-                                    <a href={resource.url} target="_blank" rel="noopener noreferrer" className="text-rose-600 hover:underline flex-grow truncate" title={resource.url}>
-                                        {resource.title}
-                                    </a>
-                                    <button onClick={() => handleDeleteResource(index)} className="ml-4 p-1 text-gray-400 hover:text-red-600 rounded-full transition-colors flex-shrink-0" aria-label="Delete resource">
-                                        <TrashIcon />
-                                    </button>
-                                </li>
-                            ))}
-                             {resources.length === 0 && <p className="text-center text-gray-500 py-4">No resources added yet.</p>}
-                        </ul>
-                    </div>
-                )}
-            </section>
+                </nav>
+            </div>
+            
+            <div className="animate-fade-in" key={activeTab}>
+                {renderContent()}
+            </div>
             
             <style>{`
                 @keyframes fade-in {
-                    from { opacity: 0; transform: translateY(-10px); }
+                    from { opacity: 0; transform: translateY(10px); }
                     to { opacity: 1; transform: translateY(0); }
                 }
-                .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
-
-                @keyframes slide-in {
-                    from { opacity: 0; transform: translateX(-20px); }
-                    to { opacity: 1; transform: translateX(0); }
-                }
-                .animate-slide-in { animation: slide-in 0.3s ease-out forwards; }
+                .animate-fade-in { animation: fade-in 0.4s ease-out forwards; }
             `}</style>
         </div>
     );
