@@ -93,7 +93,7 @@ export const releasePlan1Data: ReleaseItem[] = [
     { 
         id: 'deploy-ai', 
         title: 'Deploying AI agents', 
-        summary: 'Linking the AI agents to an actual phone number, supporting mulitple telephony partners',
+        summary: 'Linking the AI agents to an actual phone number, supporting multiple telephony partners',
         details: createDetailsList([
             'Manual Deploy options enabled for AI agents that are built.',
             'User can select any configuration saved for a telephony service provider from the deploy screen.',
@@ -126,33 +126,79 @@ export const releasePlan1Data: ReleaseItem[] = [
     },
     { 
         id: 'channel', 
-        title: 'Channel', 
-        summary: 'Adding native support for new communication channels like WhatsApp, Telegram, and Slack.',
+        title: 'Channels', 
+        summary: 'Configuring Voice channels, chat platforms and social media platforms to deploy or run the Agents created in Vitos.',
         details: createDetailsList([
-            'WhatsApp Business API integration.',
-            'Support for rich media content in new channels.',
-            'Unified inbox view for agents managing multiple channels.'
+            'Save and reuse channel configurations for quick and efficient bot deployment.',
+            'Support for dedicated Voice channels for GenAI Voice Agents.',
+            'Configuration for deploying Flow Agents across Social Media Platforms and websites.',
+            'List of all configurations saved ad visible when the user tries to deploy the agents created'
         ])
     },
     { 
         id: 'integrations', 
         title: 'Integrations', 
-        summary: 'Expanding our library of pre-built third-party integrations (e.g., Salesforce, Zendesk, HubSpot).',
-        details: createDetailsList([
-            'OAuth 2.0 support for secure third-party connections.',
-            'Marketplace for discovering and installing new integrations.',
-            'Custom integration SDK.'
-        ])
+        summary: 'Integrate API requests, Custom function codes that can be triggered during the flow/conversation, before and after.',
+        details: (
+            <div className="text-sm text-gray-600 space-y-4">
+                <p>Users can add and manage reusable APIs and Custom Functions ("Tools") within a workspace, making them accessible to all Agents. The platform displays usage counts for each tool, and they can be edited after creation.</p>
+                <div>
+                    <h5 className="font-semibold text-gray-700 mb-2">Tool Categories</h5>
+                    <ul className="list-disc list-inside space-y-3">
+                        <li>
+                            <strong>AI Agent Tools (Python):</strong>
+                            <ul className="list-disc list-inside pl-5 mt-2 space-y-1">
+                                <li><strong>Pre-Action:</strong> Triggered before a call begins.</li>
+                                <li><strong>In-Prompt:</strong> Used in real-time during a conversation. The function's description is critical, as it informs the LLM when to trigger the tool.</li>
+                                <li><strong>Post-Action:</strong> Executed after the conversation ends.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Flow Agent Tools (REST API & JavaScript):</strong>
+                            <ul className="list-disc list-inside pl-5 mt-2 space-y-1">
+                                <li>Functions and APIs are configured as nodes directly within the visual flow builder.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 className="font-semibold text-gray-700 mb-2">Creating a New Tool</h5>
+                     <ul className="list-disc list-inside space-y-2">
+                        <li><strong>Name & Description:</strong> Provide a clear name and a detailed description for each tool.</li>
+                        <li><strong>Inline Testing:</strong> A built-in testing utility allows users to validate functions with sample inputs and parameters directly in the UI before saving.</li>
+                        <li><strong>Output Definition:</strong> After a successful test, users define the output variables that the AI agent needs to process the function's result.</li>
+                        <li><strong>Cloud Deployment:</strong> Saved functions and APIs for AI Agents are automatically deployed to the cloud, ready for immediate use.</li>
+                    </ul>
+                </div>
+            </div>
+        )
     },
     { 
         id: 'providers', 
         title: 'Providers', 
-        summary: 'Integration with more AI, LLM, and STT/TTS providers to offer greater flexibility.',
-        details: createDetailsList([
-            'Plug-and-play support for different LLM providers.',
-            'Voice customization options from various STT/TTS services.',
-            'Provider performance and cost comparison dashboard.'
-        ])
+        summary: 'Configure and save provider information in one place, allowing plug-and-play selection when building agents.',
+        details: (
+            <div className="text-sm text-gray-600 space-y-4">
+                <p>Users can securely save their provider configurations (e.g., API keys) for services like LLM, Transcription, and Voice, making them available for plug-and-play use when building agents.</p>
+                <div>
+                    <h5 className="font-semibold text-gray-700 mb-2">Key Features</h5>
+                    <ul className="list-disc list-inside space-y-2">
+                        <li>Provider setups are stored securely and can be reused across multiple agents.</li>
+                        <li>API keys are handled on the backend and never exposed in the UI during agent configuration.</li>
+                        <li>Saved providers are automatically populated in the relevant dropdowns within the agent builder.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 className="font-semibold text-gray-700 mb-2">Supported Providers</h5>
+                    <ul className="list-disc list-inside space-y-3">
+                        <li><strong>LLM Models:</strong> OpenAI, Gemini, DeepSeek.</li>
+                        <li><strong>Transcription (STT):</strong> Azure, Deepgram, Google.</li>
+                        <li><strong>Voice (TTS):</strong> Azure, ElevenLabs, Google.</li>
+                    </ul>
+                </div>
+            </div>
+        )
     },
     { 
         id: 'knowledge-base', 

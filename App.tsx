@@ -26,7 +26,7 @@ function App() {
       case 'Release Plan':
         return <ReleasePlanView />;
       default:
-        return <ReleasePlanView />;
+        return <ResearchView />;
     }
   };
 

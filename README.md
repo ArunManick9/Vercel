@@ -1,14 +1,23 @@
-# Run and deploy your AI Studio app
+# Vercel Ready React Starter
 
-This contains everything you need to run your app locally.
+A foundational React and TypeScript application, styled with Tailwind CSS, and pre-configured with the necessary files for seamless deployment on Vercel.
 
-## Run Locally
+## Getting Started
 
-**Prerequisites:**  Node.js
+First, install the project dependencies:
 
+```bash
+npm install
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Then, run the development server:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+
+## Deploy on Vercel
+
+This project is pre-configured to be deployed on [Vercel](https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app). You can deploy your own version by connecting your Git provider.
