@@ -11,6 +11,7 @@ export const ReleasePlanSlide = ({ data }: { data: ReleaseItem[] }) => {
                     title={item.title}
                     summary={item.summary}
                     details={item.details}
+                    release2={item.release2}
                 />
             ))}
         </div>

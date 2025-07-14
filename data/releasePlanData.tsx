@@ -10,6 +10,12 @@ const createDetailsList = (items: string[]) => (
     </>
 );
 
+const release2Placeholder = (
+    <div className="text-sm text-gray-500 italic">
+        <p>Details for the next release phase will be outlined here. This may include enhancements, new features, or extensions of the current capabilities.</p>
+    </div>
+);
+
 export const releasePlan1Data: ReleaseItem[] = [
     { 
         id: 'platform', 
@@ -34,7 +40,8 @@ export const releasePlan1Data: ReleaseItem[] = [
                     </ul>
                 </div>
             </div>
-        )
+        ),
+        release2: release2Placeholder
     },
     { 
         id: 'build-ai', 
@@ -78,7 +85,8 @@ export const releasePlan1Data: ReleaseItem[] = [
                     </ul>
                 </div>
             </div>
-        )
+        ),
+        release2: release2Placeholder
     },
     { 
         id: 'test-ai', 
@@ -88,7 +96,8 @@ export const releasePlan1Data: ReleaseItem[] = [
             'Users can use the testing panel on the right side to test the voice agent.',
             'The testing panel includes a transcriber display and a reset option.',
             'Test the agent instantly with all the latest changes to the transcriber, voice, prompt, etc.',
-        ])
+        ]),
+        release2: release2Placeholder
     },
     { 
         id: 'deploy-ai', 
@@ -99,7 +108,8 @@ export const releasePlan1Data: ReleaseItem[] = [
             'User can select any configuration saved for a telephony service provider from the deploy screen.',
             'User will get a configurable URL on the UI which has to be configured in the respective telephony provider dashboard.',
             'Based on the provider selected, a short guide is given to the user on how to configure the URL to make the Voice Agent Live.'
-        ])
+        ]),
+        release2: release2Placeholder
     },
     { 
         id: 'build-test-flow', 
@@ -112,7 +122,8 @@ export const releasePlan1Data: ReleaseItem[] = [
             'Visual path tracing to debug conversation flows.',
             'Unit tests for individual nodes.',
             'Integration testing simulation.'
-        ])
+        ]),
+        release2: release2Placeholder
     },
     { 
         id: 'deploy-flow', 
@@ -122,7 +133,8 @@ export const releasePlan1Data: ReleaseItem[] = [
             'Seamless deployment to web, mobile, and social channels.',
             'A/B testing for different flow versions.',
             'Performance monitoring post-deployment.'
-        ])
+        ]),
+        release2: release2Placeholder
     },
     { 
         id: 'channel', 
@@ -133,7 +145,8 @@ export const releasePlan1Data: ReleaseItem[] = [
             'Support for dedicated Voice channels for GenAI Voice Agents.',
             'Configuration for deploying Flow Agents across Social Media Platforms and websites.',
             'List of all configurations saved ad visible when the user tries to deploy the agents created'
-        ])
+        ]),
+        release2: release2Placeholder
     },
     { 
         id: 'integrations', 
@@ -172,7 +185,8 @@ export const releasePlan1Data: ReleaseItem[] = [
                     </ul>
                 </div>
             </div>
-        )
+        ),
+        release2: release2Placeholder
     },
     { 
         id: 'providers', 
@@ -198,7 +212,8 @@ export const releasePlan1Data: ReleaseItem[] = [
                     </ul>
                 </div>
             </div>
-        )
+        ),
+        release2: release2Placeholder
     },
     { 
         id: 'knowledge-base', 
@@ -208,7 +223,8 @@ export const releasePlan1Data: ReleaseItem[] = [
             'Support for PDF, DOCX, and URL ingestion.',
             'AI-driven content summarization.',
             'Feedback loop for improving knowledge base accuracy.'
-        ])
+        ]),
+        release2: release2Placeholder
     },
     { 
         id: 'analytics', 
@@ -218,7 +234,8 @@ export const releasePlan1Data: ReleaseItem[] = [
             'Customizable reporting dashboards.',
             'Real-time analytics stream.',
             'Sentiment analysis and topic clustering reports.'
-        ])
+        ]),
+        release2: release2Placeholder
     },
     { 
         id: 'payments', 
@@ -228,69 +245,7 @@ export const releasePlan1Data: ReleaseItem[] = [
             'Tiered pricing plans.',
             'Pay-as-you-go model for specific features.',
             'Real-time credit usage monitoring and alerts.'
-        ])
-    },
-];
-
-export const releasePlan2Data: ReleaseItem[] = [
-    { 
-        id: 'advanced-ai', 
-        title: 'Advanced AI Capabilities', 
-        summary: 'Research and implement next-gen AI features like sentiment analysis and emotional intelligence.',
-        details: createDetailsList([
-            'Real-time sentiment tracking during conversations.',
-            'Emotion detection to adapt agent tone and response.',
-            'Topic modeling to identify emerging trends in user queries.'
-        ]) 
-    },
-    { 
-        id: 'proactive-agents', 
-        title: 'Proactive Agents', 
-        summary: 'Enable agents to initiate conversations based on user behavior and predictive triggers.',
-        details: createDetailsList([
-            'Trigger-based outreach (e.g., cart abandonment).',
-            'Scheduled messaging campaigns.',
-            'Personalized recommendations based on browsing history.'
-        ])
-    },
-    { 
-        id: 'personalization', 
-        title: 'Hyper-Personalization', 
-        summary: 'Develop a personalization engine to tailor conversations and responses to individual users.',
-        details: createDetailsList([
-            'User profile enrichment with data from integrated systems.',
-            'Dynamic conversation flows based on user segments.',
-            'Personalized product and content recommendations.'
-        ])
-    },
-    { 
-        id: 'omnichannel-v2', 
-        title: 'Omnichannel V2', 
-        summary: 'A unified customer profile and conversation history across all channels for seamless CX.',
-        details: createDetailsList([
-            'Single customer view consolidating all interactions.',
-            'Seamless conversation handover between channels (e.g., web chat to mobile app).',
-            'Cross-channel analytics.'
-        ])
-    },
-    { 
-        id: 'agent-collaboration', 
-        title: 'Agent Collaboration', 
-        summary: 'Allow multiple AI and human agents to collaborate on a single customer query.',
-        details: createDetailsList([
-            'Intelligent routing to the best-suited agent (AI or human).',
-            'Shared conversation context for seamless handoffs.',
-            'Private notes and collaboration tools for human agents.'
-        ])
-    },
-    { 
-        id: 'voice-biometrics', 
-        title: 'Voice Biometrics', 
-        summary: 'Implement voice authentication for secure and frictionless user identification.',
-        details: createDetailsList([
-            'Passive voice enrollment during conversations.',
-            'Secure authentication for sensitive transactions.',
-            'Fraud detection capabilities.'
-        ])
+        ]),
+        release2: release2Placeholder
     },
 ];

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-export const ReleaseItemCard = ({ title, summary, details }: { title: string, summary: string, details: React.ReactNode }) => {
+export const ReleaseItemCard = ({ title, summary, details, release2 }: { title: string, summary: string, details: React.ReactNode, release2?: React.ReactNode }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const contentRef = useRef<HTMLDivElement>(null);
 
@@ -9,6 +9,7 @@ export const ReleaseItemCard = ({ title, summary, details }: { title: string, su
             <button
                 onClick={() => setIsExpanded(!isExpanded)}
                 className="w-full flex justify-between items-start text-left p-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 rounded-lg"
+                aria-expanded={isExpanded}
             >
                 <div className="flex-grow">
                     <h4 className="text-lg font-semibold text-gray-800">{title}</h4>
@@ -33,6 +34,12 @@ export const ReleaseItemCard = ({ title, summary, details }: { title: string, su
             >
                 <div ref={contentRef} className="px-5 pb-5 pt-4 border-t border-gray-200">
                     {details}
+                    {release2 && (
+                        <div className="mt-6 pt-4 border-t border-dashed border-gray-300">
+                           <h5 className="text-md font-semibold text-rose-700 mb-2">Release Plan 2 Scope</h5>
+                           {release2}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

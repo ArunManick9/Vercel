@@ -7,4 +7,5 @@ export interface ReleaseItem {
     title: string;
     summary: string;
     details: React.ReactNode;
+    release2?: React.ReactNode;
 }

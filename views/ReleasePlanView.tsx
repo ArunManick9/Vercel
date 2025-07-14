@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import { releasePlan1Data, releasePlan2Data } from '../data/releasePlanData';
+import { releasePlan1Data } from '../data/releasePlanData';
 import { ReleasePlanSlide } from '../components/release_plan/ReleasePlanSlide';
 import { FutureIdeationSlide } from '../components/release_plan/FutureIdeationSlide';
 
 export const ReleasePlanView: React.FC = () => {
     const [activePlan, setActivePlan] = useState('Release Plan 1');
-    const plans = ['Release Plan 1', 'Release Plan 2', 'Future Release Ideation'];
+    const plans = ['Release Plan 1', 'Future Release Ideation'];
 
     const renderContent = () => {
         switch (activePlan) {
             case 'Release Plan 1':
                 return <ReleasePlanSlide data={releasePlan1Data} />;
-            case 'Release Plan 2':
-                return <ReleasePlanSlide data={releasePlan2Data} />;
             case 'Future Release Ideation':
                 return <FutureIdeationSlide />;
             default:
@@ -35,7 +33,7 @@ export const ReleasePlanView: React.FC = () => {
                             <button
                                 key={plan}
                                 onClick={() => setActivePlan(plan)}
-                                className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-rose-500 ${
+                                className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 ${
                                     activePlan === plan
                                         ? 'bg-rose-600 text-white shadow'
                                         : 'text-gray-600 hover:bg-gray-100'
