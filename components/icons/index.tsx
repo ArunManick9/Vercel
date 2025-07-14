@@ -7,5 +7,3 @@ export * from './ReleasePlanIcon';
 export * from './ResearchIcon';
 export * from './RoadmapIcon';
 export * from './VisionIcon';
-export * from './CheckCircleIcon';
-export * from './ClockIcon';

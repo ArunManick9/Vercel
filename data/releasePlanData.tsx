@@ -1,6 +1,6 @@
 import React from 'react';
 import type { ReleaseItem } from '../types';
-import { CheckCircleIcon, ClockIcon } from '../components/icons';
+import { CheckCircleIcon, ClockIcon } from '@heroicons/react/24/solid';
 
 const createRelease1Details = (items: string[]) => (
     <>

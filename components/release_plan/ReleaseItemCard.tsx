@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import type { ReleaseItem } from '../../types';
 import { PieChart } from '../common/PieChart';
-import { CheckCircleIcon, ClockIcon } from '../icons';
+import { CheckCircleIcon, ClockIcon } from '@heroicons/react/24/solid';
 
 interface ReleaseItemCardProps extends Omit<ReleaseItem, 'id'> {}
 
