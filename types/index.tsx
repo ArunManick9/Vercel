@@ -8,4 +8,6 @@ export interface ReleaseItem {
     summary: string;
     details: React.ReactNode;
     release2?: React.ReactNode;
+    release1Scope: number;
+    release2Scope: number;
 }
