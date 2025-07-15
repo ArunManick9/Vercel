@@ -1,9 +1,48 @@
 import React, { useState, useRef } from 'react';
-import type { ReleaseItem } from '../../types';
+import type { ReleaseItem, DetailContent, Status } from '../../types';
 import { PieChart } from '../common/PieChart';
-import { CheckCircleIcon, ClockIcon } from '@heroicons/react/24/solid';
+import { CheckCircleIcon, ClockIcon, ListBulletIcon } from '@heroicons/react/24/solid';
 
 interface ReleaseItemCardProps extends Omit<ReleaseItem, 'id'> {}
+
+const StatusIndicator = ({ status }: { status: Status }) => {
+    switch (status) {
+        case 'Done':
+            return <CheckCircleIcon className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />;
+        case 'In Progress':
+            return <ClockIcon className="w-5 h-5 text-yellow-500 shrink-0 mt-0.5" />;
+        case 'Planned':
+            return <ListBulletIcon className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />;
+        default:
+            return null;
+    }
+};
+
+const renderDetails = (content: DetailContent[]) => {
+    if (!content) return null;
+
+    const isPlaceholder = content.length === 1 && content[0].paragraph && content[0].paragraph.startsWith('Details for the next release phase');
+
+    return content.map((block, index) => (
+        <div key={index} className="space-y-2">
+            {block.heading && <h5 className="text-md font-semibold text-gray-700">{block.heading}</h5>}
+            {block.paragraph && (
+                 <p className={isPlaceholder ? 'italic text-gray-500' : ''} dangerouslySetInnerHTML={{ __html: block.paragraph }} />
+            )}
+            {block.list && (
+                <ul className="space-y-3">
+                    {block.list.map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex justify-between items-start gap-4">
+                            <span className="flex-1 text-gray-600" dangerouslySetInnerHTML={{ __html: item.text }} />
+                            <StatusIndicator status={item.status} />
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    ));
+};
+
 
 export const ReleaseItemCard = ({ title, summary, details, release2, release1Scope, release2Scope }: ReleaseItemCardProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -58,11 +97,34 @@ export const ReleaseItemCard = ({ title, summary, details, release2, release1Sco
                 className="overflow-hidden"
             >
                 <div ref={contentRef} className="px-5 pb-5 pt-4 border-t border-gray-200">
-                    {details}
+                    <div className="flex justify-end mb-4">
+                        <div className="bg-gray-50 p-3 rounded-lg border border-gray-200 text-xs">
+                            <div className="grid grid-cols-3 gap-4">
+                                <div className="flex items-center gap-2">
+                                    <CheckCircleIcon className="w-4 h-4 text-green-500 shrink-0" />
+                                    <span className="font-medium text-gray-600">Done</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <ClockIcon className="w-4 h-4 text-yellow-500 shrink-0" />
+                                    <span className="font-medium text-gray-600">In Progress</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <ListBulletIcon className="w-4 h-4 text-gray-400 shrink-0" />
+                                    <span className="font-medium text-gray-600">Planned</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="text-sm text-gray-600 space-y-4">
+                        {renderDetails(details)}
+                    </div>
                     {release2 && (
                         <div className="mt-6 pt-4 border-t border-dashed border-gray-300">
                            <h5 className="text-md font-semibold text-purple-700 mb-2">Release Plan 2 Scope</h5>
-                           {release2}
+                           <div className="text-sm text-gray-600 space-y-4">
+                                {renderDetails(release2)}
+                           </div>
                         </div>
                     )}
                 </div>
