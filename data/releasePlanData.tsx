@@ -1,8 +1,36 @@
 import type { ReleaseItem, DetailContent } from '../types';
 
-const release2Placeholder: DetailContent[] = [{
-    paragraph: "Details for the next release phase will be outlined here. This may include enhancements, new features, or extensions of the current capabilities."
-}];
+const createRelease1Details = (items: string[]) => (
+    <>
+        <h5 className="text-md font-semibold text-gray-700 mb-2">Features & Details:</h5>
+        <ul className="space-y-3">
+            {items.map((detail, index) => (
+                <li key={index} className="flex items-start gap-3">
+                    <CheckCircleIcon className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+                    <span className="text-gray-600 text-sm">{detail}</span>
+                </li>
+            ))}
+        </ul>
+    </>
+);
+
+const createRelease2Details = (items: string[]) => (
+                <ul className="space-y-3">
+        {items.map((detail, index) => (
+            <li key={index} className="flex items-start gap-3">
+                <ClockIcon className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
+                <span className="text-gray-600 text-sm">{detail}</span>
+                        </li>
+                    ))}
+                </ul>
+);
+
+
+const release2Placeholder = (
+    <div className="text-sm text-gray-500 italic">
+        <p>Details for the next release phase will be outlined here. This may include enhancements, new features, or extensions of the current capabilities.</p>
+        </div>
+    );
 
 export const releasePlan1Data: ReleaseItem[] = [
     { 
