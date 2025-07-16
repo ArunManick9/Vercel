@@ -82,6 +82,7 @@ export const releasePlan1Data: ReleaseItem[] = [
                 { text: 'Advanced Voice creation options like Voice cloning, flexibility in determining the Pitch, tone, and speech rate.', status: 'In Progress' },
                 { text: 'Advanced options for configuring a transcriber like Speech amplification and noise cancellation will be enabled.', status: 'Planned' },
                 { text: 'A Conversational Chat Agent will also be built while creating a Voice Agent (as soon as models and tools are defined).', status: 'In Progress' },
+                { text: 'Capability to build Multi Agents using the platform', status: 'Planned' },
             ]
         }],
         release1Scope: 15,
