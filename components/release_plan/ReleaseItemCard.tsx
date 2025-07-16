@@ -1,9 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import type { ReleaseItem, DetailContent, Status } from '../../types';
 import { PieChart } from '../common/PieChart';
 import { CheckCircleIcon, ClockIcon, ListBulletIcon } from '@heroicons/react/24/solid';
 
-interface ReleaseItemCardProps extends Omit<ReleaseItem, 'id'> {}
+interface ReleaseItemCardProps extends Omit<ReleaseItem, 'id'> {
+    isExpanded: boolean;
+    onToggle: () => void;
+}
 
 const StatusIndicator = ({ status }: { status: Status }) => {
     switch (status) {
@@ -44,8 +47,7 @@ const renderDetails = (content: DetailContent[]) => {
 };
 
 
-export const ReleaseItemCard = ({ title, summary, details, release2, release1Scope, release2Scope }: ReleaseItemCardProps) => {
-    const [isExpanded, setIsExpanded] = useState(false);
+export const ReleaseItemCard = ({ title, summary, details, release2, release1Scope, release2Scope, isExpanded, onToggle }: ReleaseItemCardProps) => {
     const contentRef = useRef<HTMLDivElement>(null);
 
     const totalScope = release1Scope + release2Scope;
@@ -55,7 +57,7 @@ export const ReleaseItemCard = ({ title, summary, details, release2, release1Sco
     return (
         <div className="border border-gray-200 rounded-lg bg-white transition-all duration-300 ease-in-out shadow-sm hover:shadow-lg focus-within:shadow-lg">
             <button
-                onClick={() => setIsExpanded(!isExpanded)}
+                onClick={onToggle}
                 className="w-full flex justify-between items-start text-left p-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 rounded-lg"
                 aria-expanded={isExpanded}
             >

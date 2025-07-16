@@ -31,6 +31,7 @@ export const releasePlan1Data: ReleaseItem[] = [
                 { text: 'Focus on user behavior in Application in standalone application.', status: 'Planned' },
                 { text: 'Tracking the users fall-off points and implementing proactive product marketing through emails and webinars.', status: 'In Progress' },
                 { text: 'YouTube Tutorials on best practices on building bots.', status: 'Planned' },
+                { text: 'Product Onboarding Flow, tours and Assist mode', status: 'Planned' },
             ]
         }],
         release1Scope: 5,
