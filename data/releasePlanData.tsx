@@ -1,3 +1,5 @@
+
+
 import type { ReleaseItem, DetailContent } from '../types';
 
 const release2Placeholder: DetailContent[] = [{
@@ -15,7 +17,8 @@ export const releasePlan1Data: ReleaseItem[] = [
                 paragraph: "The <strong>Vitos Platform</strong> can be accessed in two ways:",
                 list: [
                     { text: "<strong>As a Standalone Application</strong> – Users can access the full capabilities of Vitos independently.", status: 'Done' },
-                    { text: "<strong>Within Kapture’s Configuration</strong> – Integrated into Kapture for seamless usage by existing partners.", status: 'Done' }
+                    { text: "<strong>Within Kapture’s Configuration</strong> – Integrated into Kapture for seamless usage by existing partners.", status: 'Done' },
+                    { text: '<strong>First time product onboarding and Assistance</strong> – Product Onboarding Flow, tours and Assist mode', status: 'In Progress' },
                 ]
             },
             {
@@ -28,10 +31,9 @@ export const releasePlan1Data: ReleaseItem[] = [
         ],
         release2: [{
             list: [
-                { text: 'Focus on user behavior in Application in standalone application.', status: 'Planned' },
-                { text: 'Tracking the users fall-off points and implementing proactive product marketing through emails and webinars.', status: 'In Progress' },
-                { text: 'YouTube Tutorials on best practices on building bots.', status: 'Planned' },
-                { text: 'Product Onboarding Flow, tours and Assist mode', status: 'Planned' },
+                { text: '<strong>User Behavior Analytics:</strong> Focus on user behavior in Application in standalone application.', status: 'Planned' },
+                { text: '<strong>Proactive Marketing:</strong> Tracking the users fall-off points and implementing proactive product marketing through emails and webinars.', status: 'In Progress' },
+                { text: '<strong>Educational Content:</strong> YouTube Tutorials on best practices on building bots.', status: 'In Progress' },
             ]
         }],
         release1Scope: 5,
@@ -48,44 +50,64 @@ export const releasePlan1Data: ReleaseItem[] = [
             {
                 heading: "Key Capabilities & Integrations",
                 list: [
-                    { text: 'Energy Clients can use their pre-built Vertex setup to build bots with ready integration from Step 1.', status: 'Done' },
-                    { text: 'With correct credentials, bots can fetch customer and billing information using the marketer account number.', status: 'Done' },
-                    { text: 'Users have the flexibility to select their own LLM Models, Transcriber, and Voice Providers.', status: 'Done' },
-                    { text: 'Integrate Custom Functions (Python scripts) and APIs (REST supported) as pre-call, post-call, or in-prompt actions.', status: 'Done' },
-                    { text: 'Link a Knowledge Base to an agent. This release supports FAQ formats in Excel.', status: 'Done' }
+                    { text: '<strong>Vertex Integration:</strong> Energy Clients can use their pre-built Vertex setup to build bots with ready integration from Step 1.', status: 'Done' },
+                    { text: '<strong>Customer Data Fetching:</strong> With correct credentials, bots can fetch customer and billing information using the marketer account number.', status: 'Done' },
+                    { text: '<strong>Provider Flexibility:</strong> Users have the flexibility to select their own LLM Models, Transcriber, and Voice Providers.', status: 'Done' },
+                    { text: '<strong>Custom Functions & APIs:</strong> Integrate Custom Functions (Python scripts) and APIs (REST supported) as pre-call, post-call, or in-prompt actions.', status: 'Done' },
+                    { text: '<strong>Knowledge Base Integration:</strong> Link a Knowledge Base to an agent. This release supports FAQ formats in Excel.', status: 'Done' }
                 ]
             },
             {
                 heading: "Agent Configuration",
                 list: [
-                    { text: 'Configure custom messages (e.g., Welcome, Thank You), temperature, max tokens, and enable/disable caching.', status: 'Done' }
+                    { text: '<strong>Customizable Agent Settings:</strong> Configure custom messages (e.g., Welcome, Thank You), temperature, max tokens, and enable/disable caching.', status: 'Done' }
                 ]
             },
             {
                 heading: "Essential Voice Configuration Options",
                 list: [
-                    { text: 'Create voices for AI agents with choices for gender, language, accent, and various voice providers.', status: 'Done' },
-                    { text: 'Includes different voice suggestions, audio caching, and the ability to test voice prompts directly on the UI.', status: 'Done' }
+                    { text: '<strong>Voice Customization:</strong> Create voices for AI agents with choices for gender, language, accent, and various voice providers.', status: 'Done' },
+                    { text: '<strong>Advanced Voice Features:</strong> Includes different voice suggestions, audio caching, and the ability to test voice prompts directly on the UI.', status: 'Done' }
                 ]
             },
             {
-                heading: "Essential Transcriber Configuration Options",
+                heading: "Template For Building Agents",
                 list: [
-                    { text: 'Create transcribers for agents using different providers and supported languages.', status: 'Done' },
-                    { text: 'Includes Voice Activity Detection (VAD) options and live record/test capabilities within the UI.', status: 'Done' }
+                    { text: '<strong>Industry Templates:</strong> Having pre-built templates for Major industries and important/most common use cases.', status: 'In Progress' },
+    
                 ]
-            }
+            },
+            
         ],
         release2: [{
             list: [
-                { text: 'Having pre-built templates for Major industries and important/most common use cases.', status: 'Planned' },
-                { text: 'Advanced Voice creation options like Voice cloning, flexibility in determining the Pitch, tone, and speech rate.', status: 'In Progress' },
-                { text: 'Advanced options for configuring a transcriber like Speech amplification and noise cancellation will be enabled.', status: 'Planned' },
-                { text: 'A Conversational Chat Agent will also be built while creating a Voice Agent (as soon as models and tools are defined).', status: 'In Progress' },
-                { text: 'Capability to build Multi Agents using the platform', status: 'Planned' },
+                { text: '<strong>Advanced Voice Creation:</strong> Advanced Voice creation options like Voice cloning, flexibility in determining the Pitch, tone, and speech rate.', status: 'In Progress' },
+                { text: '<strong>Advanced Transcriber Config:</strong> Advanced options for configuring a transcriber like Speech amplification and noise cancellation will be enabled.', status: 'Planned' },
+                { text: '<strong>Dual Voice/Chat Agent Creation:</strong> A Conversational Chat Agent will also be built while creating a Voice Agent (as soon as models and tools are defined).', status: 'In Progress' },
+                { text: '<strong>Multi-Agent Systems:</strong> Capability to build Multi Agents using the platform', status: 'Planned' },
+                { text: '<strong>Specific Model Selection:</strong> User should be able to mention the model along with the provider', status: 'Planned' },
             ]
         }],
-        release1Scope: 15,
+        release1Scope: 9,
+        release2Scope: 5,
+    },
+    {
+        id: 'multi-agents',
+        title: 'Multi Agents',
+        summary: 'Orchestrate multiple specialized AI agents to work together on complex tasks.',
+        details: [{
+            paragraph: "Information regarding Multi Agents will be added later."
+        }],
+        release2: [{
+            heading: 'Multi Agent',
+            list: [
+                { text: '<strong>Unified Agent Platform:</strong> Users will get a unified platform to create flow Agents, Individual Agents and will be able to build Multi Agents on the same space.', status: 'Planned' },
+                { text: '<strong>Agent Import & Composition:</strong> Users can import Agents, send messages, options, include functions and build new Agents and subagents on the go.', status: 'Planned' },
+                { text: '<strong>Chat & Voice Support:</strong> Both Chat Agents and Voice agents are supported.', status: 'Planned' },
+                { text: '<strong>Advanced Routing & Logic:</strong> Intent based routing and logic based flow can be configured in the screen, with enhanced UX.', status: 'Planned' },
+            ]
+        }],
+        release1Scope: 0,
         release2Scope: 4,
     },
     { 
@@ -95,19 +117,21 @@ export const releasePlan1Data: ReleaseItem[] = [
         details: [{
             heading: "Features & Details:",
             list: [
-                { text: 'Users can use the testing panel on the right side to test the voice agent.', status: 'Done' },
-                { text: 'The testing panel includes a transcriber display and a reset option.', status: 'Done' },
-                { text: 'Test the agent instantly with all the latest changes to the transcriber, voice, prompt, etc.', status: 'Done' },
+                { text: '<strong>Live Testing Panel:</strong> Users can use the testing panel on the right side to test the voice agent.', status: 'Done' },
+                { text: '<strong>Transcriber Display & Reset:</strong> The testing panel includes a transcriber display and a reset option.', status: 'Done' },
+                { text: '<strong>Instantaneous Updates:</strong> Test the agent instantly with all the latest changes to the transcriber, voice, prompt, etc.', status: 'Done' },
             ]
         }],
         release2: [{
             list: [
-                { text: 'The user will also have a chat option to test at the web level in addition to the existing voice option.', status: 'In Progress' },
-                { text: 'The user can check the LLM model and the tools configured directly by chatting with the AI agent instead of speaking and testing all the time.', status: 'In Progress' },
+                { text: '<strong>Chat-based Testing:</strong> The user will also have a chat option to test at the web level in addition to the existing voice option.', status: 'In Progress' },
+                { text: '<strong>Configuration Verification via Chat:</strong> The user can check the LLM model and the tools configured directly by chatting with the AI agent instead of speaking and testing all the time.', status: 'In Progress' },
+                { text: '<strong>Bot-to-Bot Testing:</strong> Enabling bot to bot testing for the users', status: 'Planned' },
+                { text: '<strong>Shareable Test Links:</strong> Users can create a bot and share a web view URl with their team to test and experience the AI agent created', status: 'Planned' },
             ]
         }],
         release1Scope: 3,
-        release2Scope: 2,
+        release2Scope: 4,
     },
     { 
         id: 'deploy-ai', 
@@ -116,17 +140,17 @@ export const releasePlan1Data: ReleaseItem[] = [
         details: [{
             heading: "Features & Details:",
             list: [
-                { text: 'Manual Deploy options enabled for AI agents that are built.', status: 'Done' },
-                { text: 'User can select any configuration saved for a telephony service provider from the deploy screen.', status: 'Done' },
-                { text: 'User will get a configurable URL on the UI which has to be configured in the respective telephony provider dashboard.', status: 'Done' },
-                { text: 'Based on the provider selected, a short guide is given to the user on how to configure the URL to make the Voice Agent Live.', status: 'Done' }
+                { text: '<strong>Manual Deployment:</strong> Manual Deploy options enabled for AI agents that are built.', status: 'Done' },
+                { text: '<strong>Telephony Provider Selection:</strong> User can select any configuration saved for a telephony service provider from the deploy screen.', status: 'Done' },
+                { text: '<strong>Configurable Webhook URL:</strong> User will get a configurable URL on the UI which has to be configured in the respective telephony provider dashboard.', status: 'Done' },
+                { text: '<strong>Deployment Guides:</strong> Based on the provider selected, a short guide is given to the user on how to configure the URL to make the Voice Agent Live.', status: 'Done' }
             ]
         }],
         release2: [{
             list: [
-                { text: 'User will have API-based Deployment for Voice Agents.', status: 'Planned' },
-                { text: 'Users will provide their credentials or some form of authentication to connect with their telephony partner and trigger deployment automatically from the Vitos portal.', status: 'Planned' },
-                { text: 'Users will also have webhooks for AI Chat Agents that they can use on their websites or chat channels like WhatsApp, Instagram, or Facebook.', status: 'Planned' },
+                { text: '<strong>API-Based Deployment:</strong> User will have API-based Deployment for Voice Agents.', status: 'Planned' },
+                { text: '<strong>Automated Deployment:</strong> Users will provide their credentials or some form of authentication to connect with their telephony partner and trigger deployment automatically from the Vitos portal.', status: 'Planned' },
+                { text: '<strong>Chat Agent Webhooks:</strong> Users will also have webhooks for AI Chat Agents that they can use on their websites or chat channels like WhatsApp, Instagram, or Facebook.', status: 'Planned' },
             ]
         }],
         release1Scope: 4,
@@ -139,19 +163,19 @@ export const releasePlan1Data: ReleaseItem[] = [
         details: [{
             heading: "Features & Details:",
             list: [
-                { text: 'Drag-and-drop interface for flow design.', status: 'Done' },
-                { text: 'New nodes: API calls, database queries, custom code execution.', status: 'Done' },
-                { text: 'Sub-flows for creating reusable components.', status: 'Done' },
-                { text: 'Visual path tracing to debug conversation flows.', status: 'Done' },
-                { text: 'Unit tests for individual nodes.', status: 'Done' },
-                { text: 'Integration testing simulation.', status: 'Done' }
+                { text: '<strong>Visual Flow Builder:</strong> Drag-and-drop interface for flow design.', status: 'Done' },
+                { text: '<strong>Advanced Nodes:</strong> New nodes: API calls, database queries, custom code execution.', status: 'Done' },
+                { text: '<strong>Reusable Sub-flows:</strong> Sub-flows for creating reusable components.', status: 'Done' },
+                { text: '<strong>Visual Debugging:</strong> Visual path tracing to debug conversation flows.', status: 'Done' },
+                { text: '<strong>Node-Level Unit Testing:</strong> Unit tests for individual nodes.', status: 'Done' },
+                { text: '<strong>End-to-End Integration Testing:</strong> Integration testing simulation.', status: 'Done' }
             ]
         }],
         release2: [{
             list: [
-                { text: 'Enhanced widgets for Fastlane.', status: 'Planned' },
-                { text: 'Added widgets for Freshdesk and other platform providers.', status: 'In Progress' },
-                { text: 'Users will have a provision to add their CRM platform credentials and then will have widgets in the flow builder to integrate them smoothly for easy actions like creating a ticket, updating a ticket, etc.', status: 'Planned' },
+                { text: '<strong>Fastlane Widget Enhancement:</strong> Enhanced widgets for Fastlane.', status: 'Planned' },
+                { text: '<strong>New CRM Widgets:</strong> Added widgets for Freshdesk and other platform providers.', status: 'In Progress' },
+                { text: '<strong>Seamless CRM Integration:</strong> Users will have a provision to add their CRM platform credentials and then will have widgets in the flow builder to integrate them smoothly for easy actions like creating a ticket, updating a ticket, etc.', status: 'Planned' },
             ]
         }],
         release1Scope: 6,
@@ -164,9 +188,9 @@ export const releasePlan1Data: ReleaseItem[] = [
         details: [{
             heading: "Features & Details:",
             list: [
-                { text: 'Seamless deployment to web, mobile, and social channels.', status: 'Done' },
-                { text: 'A/B testing for different flow versions.', status: 'In Progress' },
-                { text: 'Supporting both Registered and non registered user deployment', status: 'Done' }
+                { text: '<strong>Omnichannel Deployment:</strong> Seamless deployment to web, mobile, and social channels.', status: 'Done' },
+                { text: '<strong>A/B Testing:</strong> A/B testing for different flow versions.', status: 'In Progress' },
+                { text: '<strong>Flexible User Deployment:</strong> Supporting both Registered and non registered user deployment', status: 'Done' }
             ]
         }],
         release2: release2Placeholder,
@@ -180,10 +204,10 @@ export const releasePlan1Data: ReleaseItem[] = [
         details: [{
             heading: "Features & Details:",
             list: [
-                { text: 'Save and reuse channel configurations for quick and efficient bot deployment.', status: 'Done' },
-                { text: 'Support for dedicated Voice channels for GenAI Voice Agents.', status: 'Done' },
-                { text: 'Configuration for deploying Flow Agents across Social Media Platforms and websites.', status: 'Done' },
-                { text: 'List of all configurations saved ad visible when the user tries to deploy the agents created', status: 'Done' }
+                { text: '<strong>Reusable Configurations:</strong> Save and reuse channel configurations for quick and efficient bot deployment.', status: 'Done' },
+                { text: '<strong>Dedicated Voice Channels:</strong> Support for dedicated Voice channels for GenAI Voice Agents.', status: 'Done' },
+                { text: '<strong>Multi-Platform Deployment:</strong> Configuration for deploying Flow Agents across Social Media Platforms and websites.', status: 'Done' },
+                { text: '<strong>Saved Configuration List:</strong> List of all configurations saved ad visible when the user tries to deploy the agents created', status: 'Done' }
             ]
         }],
         release2: release2Placeholder,
@@ -215,9 +239,13 @@ export const releasePlan1Data: ReleaseItem[] = [
                 ]
             }
         ],
-        release2: release2Placeholder,
-        release1Scope: 10,
-        release2Scope: 0,
+        release2: [{
+            list: [
+                { text: '<strong>Advanced API Triggers:</strong> Calling Multiple APIs in one configuration, Sequential and parallel triggers', status: 'Planned' },
+            ]
+        }],
+        release1Scope: 6,
+        release2Scope: 1,
     },
     { 
         id: 'providers', 
@@ -230,9 +258,9 @@ export const releasePlan1Data: ReleaseItem[] = [
             {
                 heading: "Key Features",
                 list: [
-                    { text: 'Provider setups are stored securely and can be reused across multiple agents.', status: 'Done' },
-                    { text: 'API keys are handled on the backend and never exposed in the UI during agent configuration.', status: 'Done' },
-                    { text: 'Saved providers are automatically populated in the relevant dropdowns within the agent builder.', status: 'Done' }
+                    { text: '<strong>Secure & Reusable Setups:</strong> Provider setups are stored securely and can be reused across multiple agents.', status: 'Done' },
+                    { text: '<strong>Backend Key Management:</strong> API keys are handled on the backend and never exposed in the UI during agent configuration.', status: 'Done' },
+                    { text: '<strong>Auto-populated Dropdowns:</strong> Saved providers are automatically populated in the relevant dropdowns within the agent builder.', status: 'Done' }
                 ]
             },
             {
@@ -244,9 +272,13 @@ export const releasePlan1Data: ReleaseItem[] = [
                 ]
             }
         ],
-        release2: release2Placeholder,
+         release2: [{
+            list: [
+                { text: '<strong>Direct Platform Integration:</strong> Agent platforms: Users can directly their Platform by sharing corresponding Domains URLs and keys', status: 'In Progress' },
+            ]
+        }],
         release1Scope: 6,
-        release2Scope: 0,
+        release2Scope: 1,
     },
     { 
         id: 'knowledge-base', 
@@ -255,10 +287,10 @@ export const releasePlan1Data: ReleaseItem[] = [
         details: [{
             heading: "Features & Details:",
             list: [
-                { text: 'Users can add more than one Knowledge base per Agent.', status: 'Done' },
-                { text: 'For release one, KB documents have to be uploaded as Sheets/Excel with Question and answer columns.', status: 'Done' },
-                { text: 'The KB document samples can be downloaded and reuploaded by the user.', status: 'Done' },
-                { text: 'Once a KB is uploaded, the user can append more rows to the existing Q&A or replace the entire file.', status: 'Done' }
+                { text: '<strong>Multiple KBs per Agent:</strong> Users can add more than one Knowledge base per Agent.', status: 'Done' },
+                { text: '<strong>Excel/Sheet Upload:</strong> For release one, KB documents have to be uploaded as Sheets/Excel with Question and answer columns.', status: 'Done' },
+                { text: '<strong>Downloadable Templates:</strong> The KB document samples can be downloaded and reuploaded by the user.', status: 'Done' },
+                { text: '<strong>Append or Replace Data:</strong> Once a KB is uploaded, the user can append more rows to the existing Q&A or replace the entire file.', status: 'Done' }
             ]
         }],
         release2: release2Placeholder,
@@ -270,16 +302,18 @@ export const releasePlan1Data: ReleaseItem[] = [
         title: 'Analytics', 
         summary: 'Comprehensive dashboard for tracking agent performance, user engagement, and conversation analytics.',
         details: [{
-            heading: "Features & Details:",
+            paragraph: "Details for Release Plan 1 are being finalized and will be added soon."
+        }],
+        release2: [{
+            heading: 'Enhanced Analytics for Voice, Chat, and Flow Agents',
             list: [
-                { text: 'Customizable reporting dashboards.', status: 'Planned' },
-                { text: 'Real-time analytics stream.', status: 'Planned' },
-                { text: 'Sentiment analysis and topic clustering reports.', status: 'Planned' }
+                { text: '<strong>Dedicated Analytics Tabs:</strong> Separate sub-tabs for GenAI Voice, Chat, and Flow agents for focused analysis.', status: 'Planned' },
+                { text: '<strong>AI Agent Performance Tracking:</strong> Track intents, sentiments, drop-offs, unidentified utterances, bot health, and call statistics.', status: 'Planned' },
+                { text: '<strong>Flow Agent CX Metrics:</strong> Monitor CSAT, resolution rate, trends, completion rates, and other key customer experience parameters.', status: 'Planned' },
             ]
         }],
-        release2: release2Placeholder,
-        release1Scope: 3,
-        release2Scope: 0,
+        release1Scope: 0,
+        release2Scope: 3,
     },
     { 
         id: 'payments', 
@@ -288,9 +322,9 @@ export const releasePlan1Data: ReleaseItem[] = [
         details: [{
             heading: "Features & Details:",
             list: [
-                { text: 'The users can use the free tier credit to build and test the AI agents and flow agents.', status: 'Planned' },
-                { text: 'Once the user has reached the limit the user can then reach raise request to buy new credits from the platform or Support communities.', status: 'Planned' },
-                { text: 'Based on the requirement and request we will enable more credit for the requested account to test out the Agents.', status: 'Planned' }
+                { text: '<strong>Generous Free Tier:</strong> The users can use the free tier credit to build and test the AI agents and flow agents.', status: 'Planned' },
+                { text: '<strong>Manual Credit Purchase:</strong> Once the user has reached the limit the user can then reach raise request to buy new credits from the platform or Support communities.', status: 'Planned' },
+                { text: '<strong>On-Demand Credit:</strong> Based on the requirement and request we will enable more credit for the requested account to test out the Agents.', status: 'Planned' }
             ]
         }],
         release2: release2Placeholder,

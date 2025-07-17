@@ -33,9 +33,9 @@ const renderDetails = (content: DetailContent[]) => {
                  <p className={isPlaceholder ? 'italic text-gray-500' : ''} dangerouslySetInnerHTML={{ __html: block.paragraph }} />
             )}
             {block.list && (
-                <ul className="space-y-3">
+                <ul>
                     {block.list.map((item, itemIndex) => (
-                        <li key={itemIndex} className="flex justify-between items-start gap-4">
+                        <li key={itemIndex} className="flex justify-between items-start gap-4 py-3 border-b border-gray-200 last:border-b-0">
                             <span className="flex-1 text-gray-600" dangerouslySetInnerHTML={{ __html: item.text }} />
                             <StatusIndicator status={item.status} />
                         </li>
