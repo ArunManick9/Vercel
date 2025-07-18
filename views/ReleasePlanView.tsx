@@ -3,14 +3,18 @@ import { releasePlan1Data } from '../data/releasePlanData';
 import { ReleasePlanSlide } from '../components/release_plan/ReleasePlanSlide';
 import { FutureIdeationSlide } from '../components/release_plan/FutureIdeationSlide';
 
-export const ReleasePlanView: React.FC = () => {
+interface ReleasePlanViewProps {
+    onOpenLink: (url: string) => void;
+}
+
+export const ReleasePlanView: React.FC<ReleasePlanViewProps> = ({ onOpenLink }) => {
     const [activePlan, setActivePlan] = useState('Release Plan 1');
     const plans = ['Release Plan 1', 'Future Release Ideation'];
 
     const renderContent = () => {
         switch (activePlan) {
             case 'Release Plan 1':
-                return <ReleasePlanSlide data={releasePlan1Data} />;
+                return <ReleasePlanSlide data={releasePlan1Data} onOpenLink={onOpenLink} />;
             case 'Future Release Ideation':
                 return <FutureIdeationSlide />;
             default:

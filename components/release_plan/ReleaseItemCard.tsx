@@ -1,11 +1,12 @@
 import React, { useRef } from 'react';
-import type { ReleaseItem, DetailContent, Status } from '../../types';
+import type { ReleaseItem, DetailContent, Status, LinkData } from '../../types';
 import { PieChart } from '../common/PieChart';
 import { CheckCircleIcon, ClockIcon, ListBulletIcon } from '@heroicons/react/24/solid';
 
 interface ReleaseItemCardProps extends Omit<ReleaseItem, 'id'> {
     isExpanded: boolean;
     onToggle: () => void;
+    onOpenLink: (url: string) => void;
 }
 
 const StatusIndicator = ({ status }: { status: Status }) => {
@@ -21,7 +22,20 @@ const StatusIndicator = ({ status }: { status: Status }) => {
     }
 };
 
-const renderDetails = (content: DetailContent[]) => {
+const EmbedLink: React.FC<{ link: LinkData; onOpenLink: (url: string) => void }> = ({ link, onOpenLink }) => (
+    <button
+        onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onOpenLink(link.url);
+        }}
+        className="text-rose-600 underline font-medium hover:text-rose-800 transition-colors"
+    >
+        {link.displayText}
+    </button>
+);
+
+const renderDetails = (content: DetailContent[], onOpenLink: (url: string) => void) => {
     if (!content) return null;
 
     const isPlaceholder = content.length === 1 && content[0].paragraph && content[0].paragraph.startsWith('Details for the next release phase');
@@ -30,13 +44,19 @@ const renderDetails = (content: DetailContent[]) => {
         <div key={index} className="space-y-2">
             {block.heading && <h5 className="text-md font-semibold text-gray-700">{block.heading}</h5>}
             {block.paragraph && (
-                 <p className={isPlaceholder ? 'italic text-gray-500' : ''} dangerouslySetInnerHTML={{ __html: block.paragraph }} />
+                 <p className={isPlaceholder ? 'italic text-gray-500' : ''}>
+                    <span dangerouslySetInnerHTML={{ __html: block.paragraph }} />
+                    {block.link && <span className="ml-1"><EmbedLink link={block.link} onOpenLink={onOpenLink} /></span>}
+                 </p>
             )}
             {block.list && (
-                <ul>
+                <ul className="space-y-3">
                     {block.list.map((item, itemIndex) => (
-                        <li key={itemIndex} className="flex justify-between items-start gap-4 py-3 border-b border-gray-200 last:border-b-0">
-                            <span className="flex-1 text-gray-600" dangerouslySetInnerHTML={{ __html: item.text }} />
+                        <li key={itemIndex} className="flex justify-between items-start gap-4">
+                            <span className="flex-1 text-gray-600">
+                                <span dangerouslySetInnerHTML={{ __html: item.text }} />
+                                {item.link && <span className="ml-1"><EmbedLink link={item.link} onOpenLink={onOpenLink} /></span>}
+                            </span>
                             <StatusIndicator status={item.status} />
                         </li>
                     ))}
@@ -47,7 +67,7 @@ const renderDetails = (content: DetailContent[]) => {
 };
 
 
-export const ReleaseItemCard = ({ title, summary, details, release2, release1Scope, release2Scope, isExpanded, onToggle }: ReleaseItemCardProps) => {
+export const ReleaseItemCard = ({ title, summary, details, release2, release1Scope, release2Scope, isExpanded, onToggle, onOpenLink }: ReleaseItemCardProps) => {
     const contentRef = useRef<HTMLDivElement>(null);
 
     const totalScope = release1Scope + release2Scope;
@@ -105,7 +125,7 @@ export const ReleaseItemCard = ({ title, summary, details, release2, release1Sco
                                 <div className="flex items-center gap-2">
                                     <CheckCircleIcon className="w-4 h-4 text-green-500 shrink-0" />
                                     <span className="font-medium text-gray-600">Done</span>
-                                </div>
+                                 </div>
                                 <div className="flex items-center gap-2">
                                     <ClockIcon className="w-4 h-4 text-yellow-500 shrink-0" />
                                     <span className="font-medium text-gray-600">In Progress</span>
@@ -119,13 +139,13 @@ export const ReleaseItemCard = ({ title, summary, details, release2, release1Sco
                     </div>
 
                     <div className="text-sm text-gray-600 space-y-4">
-                        {renderDetails(details)}
+                        {renderDetails(details, onOpenLink)}
                     </div>
                     {release2 && (
                         <div className="mt-6 pt-4 border-t border-dashed border-gray-300">
                            <h5 className="text-md font-semibold text-purple-700 mb-2">Release Plan 2 Scope</h5>
                            <div className="text-sm text-gray-600 space-y-4">
-                                {renderDetails(release2)}
+                                {renderDetails(release2, onOpenLink)}
                            </div>
                         </div>
                     )}

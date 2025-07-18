@@ -1,5 +1,3 @@
-
-
 import type { ReleaseItem, DetailContent } from '../types';
 
 const release2Placeholder: DetailContent[] = [{
@@ -18,7 +16,6 @@ export const releasePlan1Data: ReleaseItem[] = [
                 list: [
                     { text: "<strong>As a Standalone Application</strong> – Users can access the full capabilities of Vitos independently.", status: 'Done' },
                     { text: "<strong>Within Kapture’s Configuration</strong> – Integrated into Kapture for seamless usage by existing partners.", status: 'Done' },
-                    { text: '<strong>First time product onboarding and Assistance</strong> – Product Onboarding Flow, tours and Assist mode', status: 'In Progress' },
                 ]
             },
             {
@@ -27,7 +24,15 @@ export const releasePlan1Data: ReleaseItem[] = [
                     { text: "<strong>Standalone Access:</strong> Users can create <strong>multiple workspaces</strong> tailored to their specific needs or departments.", status: 'Done' },
                     { text: "<strong>Kapture Integration (for existing partners):</strong> Each partner receives <strong>a single dedicated workspace</strong> as part of the integration.", status: 'Done' }
                 ]
-            }
+            },
+            {
+                heading: "Resources and Product Onboarding",
+                list: [
+                    { text: '<strong>First time product onboarding and Assistance</strong> – Product Onboarding Flow, tours and Assist mode', status: 'In Progress' },
+                    { text: "<strong>Documentation</strong> – Complete documentation of Vitos Release one for assisting users - <a href=\"https://dev.kapture.cx/docs-vitos\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-rose-600 underline font-medium\">Link</a>", status: 'Done' },
+                    { text: '<strong>Video content</strong> – Initial Videos helping user Deploy Agents created in our portal(Manual Process)', status: 'In Progress' },
+                ]
+            },
         ],
         release2: [{
             list: [
@@ -51,7 +56,7 @@ export const releasePlan1Data: ReleaseItem[] = [
                 heading: "Key Capabilities & Integrations",
                 list: [
                     { text: '<strong>Vertex Integration:</strong> Energy Clients can use their pre-built Vertex setup to build bots with ready integration from Step 1.', status: 'Done' },
-                    { text: '<strong>Customer Data Fetching:</strong> With correct credentials, bots can fetch customer and billing information using the marketer account number.', status: 'Done' },
+                    { text: '<strong>Customer Data Fetching(Vertex):</strong> With correct credentials, bots can fetch customer and billing information using the marketer account number.', status: 'Done' },
                     { text: '<strong>Provider Flexibility:</strong> Users have the flexibility to select their own LLM Models, Transcriber, and Voice Providers.', status: 'Done' },
                     { text: '<strong>Custom Functions & APIs:</strong> Integrate Custom Functions (Python scripts) and APIs (REST supported) as pre-call, post-call, or in-prompt actions.', status: 'Done' },
                     { text: '<strong>Knowledge Base Integration:</strong> Link a Knowledge Base to an agent. This release supports FAQ formats in Excel.', status: 'Done' }
@@ -85,7 +90,7 @@ export const releasePlan1Data: ReleaseItem[] = [
                 { text: '<strong>Advanced Transcriber Config:</strong> Advanced options for configuring a transcriber like Speech amplification and noise cancellation will be enabled.', status: 'Planned' },
                 { text: '<strong>Dual Voice/Chat Agent Creation:</strong> A Conversational Chat Agent will also be built while creating a Voice Agent (as soon as models and tools are defined).', status: 'In Progress' },
                 { text: '<strong>Multi-Agent Systems:</strong> Capability to build Multi Agents using the platform', status: 'Planned' },
-                { text: '<strong>Specific Model Selection:</strong> User should be able to mention the model along with the provider', status: 'Planned' },
+                { text: '<strong>Specific Model Selection:</strong> User should be able to mention the model along with the provider Example: Open -> GPT 4o, GPT 4 Turbo; Google-> Gemini 1.5 Pro, Gemini 1.5 Flash', status: 'Planned' },
             ]
         }],
         release1Scope: 9,
@@ -96,7 +101,7 @@ export const releasePlan1Data: ReleaseItem[] = [
         title: 'Multi Agents',
         summary: 'Orchestrate multiple specialized AI agents to work together on complex tasks.',
         details: [{
-            paragraph: "Information regarding Multi Agents will be added later."
+            paragraph: "No Multi Agent Capabilities are available on Release 1"
         }],
         release2: [{
             heading: 'Multi Agent',
@@ -164,17 +169,17 @@ export const releasePlan1Data: ReleaseItem[] = [
             heading: "Features & Details:",
             list: [
                 { text: '<strong>Visual Flow Builder:</strong> Drag-and-drop interface for flow design.', status: 'Done' },
-                { text: '<strong>Advanced Nodes:</strong> New nodes: API calls, database queries, custom code execution.', status: 'Done' },
+                { text: '<strong>Integration/Action Nodes:</strong> New nodes: API calls, database queries, custom code execution.', status: 'Done' },
                 { text: '<strong>Reusable Sub-flows:</strong> Sub-flows for creating reusable components.', status: 'Done' },
                 { text: '<strong>Visual Debugging:</strong> Visual path tracing to debug conversation flows.', status: 'Done' },
-                { text: '<strong>Node-Level Unit Testing:</strong> Unit tests for individual nodes.', status: 'Done' },
-                { text: '<strong>End-to-End Integration Testing:</strong> Integration testing simulation.', status: 'Done' }
+                { text: '<strong>New CRM Widgets:</strong> Added widgets for Freshdesk and Zendesk platforms', status: 'In Progress' },
             ]
         }],
         release2: [{
             list: [
-                { text: '<strong>Fastlane Widget Enhancement:</strong> Enhanced widgets for Fastlane.', status: 'Planned' },
-                { text: '<strong>New CRM Widgets:</strong> Added widgets for Freshdesk and other platform providers.', status: 'In Progress' },
+                { text: '<strong>Node-Level Unit Testing:</strong> Unit tests for individual nodes.', status: 'Planned' },
+                { text: '<strong>End-to-End Integration Testing:</strong> Integration testing simulation.Running APIs at node level and calling out missing components', status: 'Planned' },
+                { text: '<strong>Fastlane Widget Enhancement: Commonly used ML APIs used in fastlane like intent recoginition, sentiments etc.,</strong> Enhanced widgets for Fastlane.', status: 'Planned'},
                 { text: '<strong>Seamless CRM Integration:</strong> Users will have a provision to add their CRM platform credentials and then will have widgets in the flow builder to integrate them smoothly for easy actions like creating a ticket, updating a ticket, etc.', status: 'Planned' },
             ]
         }],
@@ -188,12 +193,16 @@ export const releasePlan1Data: ReleaseItem[] = [
         details: [{
             heading: "Features & Details:",
             list: [
-                { text: '<strong>Omnichannel Deployment:</strong> Seamless deployment to web, mobile, and social channels.', status: 'Done' },
+                { text: '<strong>Omnichannel Deployment:</strong> Seamless deployment to web and mobile channels', status: 'Done' },
                 { text: '<strong>A/B Testing:</strong> A/B testing for different flow versions.', status: 'In Progress' },
                 { text: '<strong>Flexible User Deployment:</strong> Supporting both Registered and non registered user deployment', status: 'Done' }
             ]
         }],
-        release2: release2Placeholder,
+        release2:  [{
+            list: [
+                { text: '<strong>Social Media Channels</strong> One-Click deployment to Social Medial channels for the configuration saved by the user', status: 'Planned' },
+               ]
+        }],
         release1Scope: 3,
         release2Scope: 0,
     },
@@ -268,13 +277,14 @@ export const releasePlan1Data: ReleaseItem[] = [
                 list: [
                     { text: '<strong>LLM Models:</strong> OpenAI, Gemini, DeepSeek.', status: 'Done' },
                     { text: '<strong>Transcription (STT):</strong> Azure, Deepgram, Google.', status: 'Done' },
-                    { text: '<strong>Voice (TTS):</strong> Azure, ElevenLabs, Google.', status: 'Done' }
+                    { text: '<strong>Voice (TTS):</strong> Azure, ElevenLabs, Google.', status: 'Done' },
+                    { text: '<strong>Platforms:</strong> Freshdesk and Zendesk', status: 'In Progress' }
                 ]
             }
         ],
          release2: [{
             list: [
-                { text: '<strong>Direct Platform Integration:</strong> Agent platforms: Users can directly their Platform by sharing corresponding Domains URLs and keys', status: 'In Progress' },
+                { text: '<strong>Direct Platform Integration:</strong>  Users can directly link any of their Agent Platform by sharing corresponding Domains URLs and keys', status: 'In Progress' },
             ]
         }],
         release1Scope: 6,
@@ -321,6 +331,7 @@ export const releasePlan1Data: ReleaseItem[] = [
         summary: 'Generous Free tier, with simple payment structure with manual support to buy credits',
         details: [{
             heading: "Features & Details:",
+            paragraph:"Notes on Payment Policy briefings : <a href=\"https://www.notion.so/Finalizing-Payment-and-billing-20266e066d5180d68c09fb2638af1479?source=copy_link\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-rose-600 underline font-medium\">Link</a>",
             list: [
                 { text: '<strong>Generous Free Tier:</strong> The users can use the free tier credit to build and test the AI agents and flow agents.', status: 'Planned' },
                 { text: '<strong>Manual Credit Purchase:</strong> Once the user has reached the limit the user can then reach raise request to buy new credits from the platform or Support communities.', status: 'Planned' },

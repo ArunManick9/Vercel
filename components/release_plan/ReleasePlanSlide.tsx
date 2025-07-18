@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import type { ReleaseItem } from '../../types';
 import { ReleaseItemCard } from './ReleaseItemCard';
 
-export const ReleasePlanSlide = ({ data }: { data: ReleaseItem[] }) => {
+interface ReleasePlanSlideProps {
+    data: ReleaseItem[];
+    onOpenLink: (url: string) => void;
+}
+
+export const ReleasePlanSlide = ({ data, onOpenLink }: ReleasePlanSlideProps) => {
     const [openItemId, setOpenItemId] = useState<string | null>(null);
 
     const handleToggle = (itemId: string) => {
@@ -22,6 +27,7 @@ export const ReleasePlanSlide = ({ data }: { data: ReleaseItem[] }) => {
                         release2Scope={item.release2Scope}
                         isExpanded={openItemId === item.id}
                         onToggle={() => handleToggle(item.id)}
+                        onOpenLink={onOpenLink}
                     />
                 </div>
             ))}

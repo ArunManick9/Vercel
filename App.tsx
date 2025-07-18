@@ -3,19 +3,23 @@ import { Sidebar } from './components/layout/Sidebar';
 import { ResearchView } from './views/ResearchView';
 import { LinksView } from './views/LinksView';
 import { ReleasePlanView } from './views/ReleasePlanView';
+import { VisionView } from './views/VisionView';
 import type { View } from './types';
-import { ResearchIcon, LinksIcon, ReleasePlanIcon } from './components/icons';
+import { ResearchIcon, LinksIcon, ReleasePlanIcon, VisionIcon } from './components/icons';
+import { EmbeddedLinkView } from './components/common/EmbeddedLinkView';
 
-const views: View[] = ['Research', 'Links', 'Release Plan'];
+const views: View[] = ['Research', 'Links', 'Release Plan', 'Vision'];
 
 const icons: Record<View, React.FC<React.SVGProps<SVGSVGElement>>> = {
   Research: ResearchIcon,
   Links: LinksIcon,
   'Release Plan': ReleasePlanIcon,
+  Vision: VisionIcon,
 };
 
 function App() {
   const [activeView, setActiveView] = useState<View>('Release Plan');
+  const [embeddedUrl, setEmbeddedUrl] = useState<string | null>(null);
 
   const renderContent = () => {
     switch (activeView) {
@@ -24,9 +28,11 @@ function App() {
       case 'Links':
         return <LinksView />;
       case 'Release Plan':
-        return <ReleasePlanView />;
+        return <ReleasePlanView onOpenLink={setEmbeddedUrl} />;
+      case 'Vision':
+        return <VisionView />;
       default:
-        return <ReleasePlanView />;
+        return <ReleasePlanView onOpenLink={setEmbeddedUrl} />;
     }
   };
 
@@ -41,6 +47,7 @@ function App() {
       <main className="flex-grow p-4 sm:p-6 lg:p-8 overflow-y-auto">
         {renderContent()}
       </main>
+      {embeddedUrl && <EmbeddedLinkView url={embeddedUrl} onClose={() => setEmbeddedUrl(null)} />}
     </div>
   );
 }
