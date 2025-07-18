@@ -41,7 +41,7 @@ export const releasePlan1Data: ReleaseItem[] = [
                 { text: '<strong>Educational Content:</strong> YouTube Tutorials on best practices on building bots.', status: 'In Progress' },
             ]
         }],
-        release1Scope: 5,
+        release1Scope: 7,
         release2Scope: 3,
     },
     { 
@@ -183,8 +183,8 @@ export const releasePlan1Data: ReleaseItem[] = [
                 { text: '<strong>Seamless CRM Integration:</strong> Users will have a provision to add their CRM platform credentials and then will have widgets in the flow builder to integrate them smoothly for easy actions like creating a ticket, updating a ticket, etc.', status: 'Planned' },
             ]
         }],
-        release1Scope: 6,
-        release2Scope: 3,
+        release1Scope: 5,
+        release2Scope: 4,
     },
     { 
         id: 'deploy-flow', 
@@ -204,7 +204,7 @@ export const releasePlan1Data: ReleaseItem[] = [
                ]
         }],
         release1Scope: 3,
-        release2Scope: 0,
+        release2Scope: 1,
     },
     { 
         id: 'channel', 
@@ -287,7 +287,7 @@ export const releasePlan1Data: ReleaseItem[] = [
                 { text: '<strong>Direct Platform Integration:</strong>  Users can directly link any of their Agent Platform by sharing corresponding Domains URLs and keys', status: 'In Progress' },
             ]
         }],
-        release1Scope: 6,
+        release1Scope: 7,
         release2Scope: 1,
     },
     { 

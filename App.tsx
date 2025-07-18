@@ -3,21 +3,25 @@ import { Sidebar } from './components/layout/Sidebar';
 import { ResearchView } from './views/ResearchView';
 import { LinksView } from './views/LinksView';
 import { ReleasePlanView } from './views/ReleasePlanView';
-import { VisionView } from './views/VisionView';
 import type { View } from './types';
-import { ResearchIcon, LinksIcon, ReleasePlanIcon, VisionIcon } from './components/icons';
+import { ResearchIcon, LinksIcon, ReleasePlanIcon } from './components/icons';
 
-const views: View[] = ['Research', 'Links', 'Release Plan', 'Vision'];
+const views: View[] = ['Research', 'Links', 'Release Plan'];
 
 const icons: Record<View, React.FC<React.SVGProps<SVGSVGElement>>> = {
   Research: ResearchIcon,
   Links: LinksIcon,
   'Release Plan': ReleasePlanIcon,
-  Vision: VisionIcon,
 };
 
 function App() {
   const [activeView, setActiveView] = useState<View>('Release Plan');
+
+  // Ensure activeView is valid, reset to default if not.
+  // This handles the case where 'Vision' might have been the last active view.
+  if (!views.includes(activeView)) {
+    setActiveView('Release Plan');
+  }
 
   const renderContent = () => {
     switch (activeView) {
@@ -27,8 +31,6 @@ function App() {
         return <LinksView />;
       case 'Release Plan':
         return <ReleasePlanView />;
-      case 'Vision':
-        return <VisionView />;
       default:
         return <ReleasePlanView />;
     }

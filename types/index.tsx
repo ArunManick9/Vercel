@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type View = 'Research' | 'Links' | 'Release Plan' | 'Vision';
+export type View = 'Research' | 'Links' | 'Release Plan';
 
 export type Status = 'Done' | 'In Progress' | 'Planned';
 

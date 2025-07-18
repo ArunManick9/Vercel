@@ -69,14 +69,14 @@ export const ReleaseItemCard = ({ title, summary, details, release2, release1Sco
                 <div className="flex items-center gap-4 shrink-0">
                     <div className="flex flex-col items-center">
                         <PieChart value1={r1_percentage} value2={r2_percentage} />
-                         <div className="flex items-center gap-2.5 mt-1.5 text-xs font-medium text-gray-500">
-                            <div className="flex items-center gap-1" title="Release 1 Scope">
+                         <div className="flex items-center gap-3 mt-1.5 text-xs font-medium text-gray-500">
+                            <div className="flex items-center gap-1.5" title="Release 1 Scope">
                                 <CheckCircleIcon className="w-3.5 h-3.5 text-rose-500" />
-                                <span>R1</span>
+                                <span>R1: <strong className="font-semibold text-gray-700">{release1Scope}</strong></span>
                             </div>
-                            <div className="flex items-center gap-1" title="Release 2 Scope">
+                            <div className="flex items-center gap-1.5" title="Release 2 Scope">
                                 <ClockIcon className="w-3.5 h-3.5 text-purple-400" />
-                                <span>R2</span>
+                                <span>R2: <strong className="font-semibold text-gray-700">{release2Scope}</strong></span>
                             </div>
                         </div>
                     </div>
