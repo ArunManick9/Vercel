@@ -1,12 +1,11 @@
 import React, { useRef } from 'react';
-import type { ReleaseItem, DetailContent, Status, LinkData } from '../../types';
+import type { ReleaseItem, DetailContent, Status } from '../../types';
 import { PieChart } from '../common/PieChart';
 import { CheckCircleIcon, ClockIcon, ListBulletIcon } from '@heroicons/react/24/solid';
 
 interface ReleaseItemCardProps extends Omit<ReleaseItem, 'id'> {
     isExpanded: boolean;
     onToggle: () => void;
-    onOpenLink: (url: string) => void;
 }
 
 const StatusIndicator = ({ status }: { status: Status }) => {
@@ -22,20 +21,7 @@ const StatusIndicator = ({ status }: { status: Status }) => {
     }
 };
 
-const EmbedLink: React.FC<{ link: LinkData; onOpenLink: (url: string) => void }> = ({ link, onOpenLink }) => (
-    <button
-        onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            onOpenLink(link.url);
-        }}
-        className="text-rose-600 underline font-medium hover:text-rose-800 transition-colors"
-    >
-        {link.displayText}
-    </button>
-);
-
-const renderDetails = (content: DetailContent[], onOpenLink: (url: string) => void) => {
+const renderDetails = (content: DetailContent[]) => {
     if (!content) return null;
 
     const isPlaceholder = content.length === 1 && content[0].paragraph && content[0].paragraph.startsWith('Details for the next release phase');
@@ -44,19 +30,13 @@ const renderDetails = (content: DetailContent[], onOpenLink: (url: string) => vo
         <div key={index} className="space-y-2">
             {block.heading && <h5 className="text-md font-semibold text-gray-700">{block.heading}</h5>}
             {block.paragraph && (
-                 <p className={isPlaceholder ? 'italic text-gray-500' : ''}>
-                    <span dangerouslySetInnerHTML={{ __html: block.paragraph }} />
-                    {block.link && <span className="ml-1"><EmbedLink link={block.link} onOpenLink={onOpenLink} /></span>}
-                 </p>
+                 <p className={isPlaceholder ? 'italic text-gray-500' : ''} dangerouslySetInnerHTML={{ __html: block.paragraph }} />
             )}
             {block.list && (
                 <ul className="space-y-3">
                     {block.list.map((item, itemIndex) => (
                         <li key={itemIndex} className="flex justify-between items-start gap-4">
-                            <span className="flex-1 text-gray-600">
-                                <span dangerouslySetInnerHTML={{ __html: item.text }} />
-                                {item.link && <span className="ml-1"><EmbedLink link={item.link} onOpenLink={onOpenLink} /></span>}
-                            </span>
+                            <span className="flex-1 text-gray-600" dangerouslySetInnerHTML={{ __html: item.text }} />
                             <StatusIndicator status={item.status} />
                         </li>
                     ))}
@@ -67,7 +47,7 @@ const renderDetails = (content: DetailContent[], onOpenLink: (url: string) => vo
 };
 
 
-export const ReleaseItemCard = ({ title, summary, details, release2, release1Scope, release2Scope, isExpanded, onToggle, onOpenLink }: ReleaseItemCardProps) => {
+export const ReleaseItemCard = ({ title, summary, details, release2, release1Scope, release2Scope, isExpanded, onToggle }: ReleaseItemCardProps) => {
     const contentRef = useRef<HTMLDivElement>(null);
 
     const totalScope = release1Scope + release2Scope;
@@ -139,13 +119,13 @@ export const ReleaseItemCard = ({ title, summary, details, release2, release1Sco
                     </div>
 
                     <div className="text-sm text-gray-600 space-y-4">
-                        {renderDetails(details, onOpenLink)}
+                        {renderDetails(details)}
                     </div>
                     {release2 && (
                         <div className="mt-6 pt-4 border-t border-dashed border-gray-300">
                            <h5 className="text-md font-semibold text-purple-700 mb-2">Release Plan 2 Scope</h5>
                            <div className="text-sm text-gray-600 space-y-4">
-                                {renderDetails(release2, onOpenLink)}
+                                {renderDetails(release2)}
                            </div>
                         </div>
                     )}

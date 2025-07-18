@@ -11,7 +11,6 @@ import {
 
 export const ResearchView: React.FC = () => {
     const [activeTab, setActiveTab] = useState<ResearchTab>('Market Landscape');
-    const [selectedResource, setSelectedResource] = useState<string | null>(null);
 
     const renderContent = () => {
         switch (activeTab) {
@@ -56,37 +55,21 @@ export const ResearchView: React.FC = () => {
                     <div className="space-y-6 p-2">
                         <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
                            <h3 className="text-xl font-semibold text-gray-800 mb-3">Resource Links</h3>
-                           <p className="text-sm text-gray-500 mb-4">Click a link to view its content below. Note: Some sites may prevent embedding due to security policies.</p>
+                           <p className="text-sm text-gray-500 mb-4">External resources and research materials. Links will open in a new tab.</p>
                            <ul className="space-y-2">
                                {resources.map((resource) => (
                                    <li key={resource.url}>
                                        <a 
                                          href={resource.url} 
-                                         onClick={(e) => {
-                                             e.preventDefault();
-                                             setSelectedResource(resource.url);
-                                         }}
-                                         className={`block p-2.5 rounded-md text-sm font-medium transition-colors ${selectedResource === resource.url ? 'bg-rose-50 text-rose-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'}`}
+                                         target="_blank"
+                                         rel="noopener noreferrer"
+                                         className="block p-2.5 rounded-md text-sm font-medium transition-colors text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                                         >
                                            {resource.title}
                                        </a>
                                    </li>
                                ))}
                            </ul>
-                        </div>
-                        <div className="bg-white rounded-lg border border-gray-200 shadow-sm aspect-video">
-                            {selectedResource ? (
-                                <iframe 
-                                    src={selectedResource}
-                                    title="Resource Viewer" 
-                                    className="w-full h-full rounded-lg"
-                                    sandbox="allow-scripts allow-same-origin"
-                                />
-                            ) : (
-                                <div className="flex items-center justify-center h-full text-gray-500">
-                                    <p>Select a resource from the list above to view it here.</p>
-                                </div>
-                            )}
                         </div>
                     </div>
                 );
@@ -104,7 +87,6 @@ export const ResearchView: React.FC = () => {
                             key={tab}
                             onClick={() => {
                                 setActiveTab(tab);
-                                setSelectedResource(null); // Reset resource view on tab change
                             }}
                             className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors
                                 ${activeTab === tab 

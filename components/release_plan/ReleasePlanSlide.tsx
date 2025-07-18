@@ -4,10 +4,9 @@ import { ReleaseItemCard } from './ReleaseItemCard';
 
 interface ReleasePlanSlideProps {
     data: ReleaseItem[];
-    onOpenLink: (url: string) => void;
 }
 
-export const ReleasePlanSlide = ({ data, onOpenLink }: ReleasePlanSlideProps) => {
+export const ReleasePlanSlide = ({ data }: ReleasePlanSlideProps) => {
     const [openItemId, setOpenItemId] = useState<string | null>(null);
 
     const handleToggle = (itemId: string) => {
@@ -27,7 +26,6 @@ export const ReleasePlanSlide = ({ data, onOpenLink }: ReleasePlanSlideProps) =>
                         release2Scope={item.release2Scope}
                         isExpanded={openItemId === item.id}
                         onToggle={() => handleToggle(item.id)}
-                        onOpenLink={onOpenLink}
                     />
                 </div>
             ))}
